@@ -14,7 +14,7 @@ class AzureBlobStorageClient(BaseStorageClient):
         self.storage_account = storage_account
         self.storage_key = storage_key
         connection_string = (
-            f"DefaultEndpointsProtocol=https;"
+            f"DefaultEndpointsProtocol=http;"
             f"AccountName={storage_account};"
             f"AccountKey={storage_key};"
             f"EndpointSuffix=core.windows.net"
@@ -45,7 +45,7 @@ class AzureBlobStorageClient(BaseStorageClient):
             expiry=expiry_time,
         )
 
-        return f"https://{self.storage_account}.blob.core.windows.net/{self.container_name}/{object_key}?{sas_token}"
+        return f"http://{self.storage_account}.blob.core.windows.net/{self.container_name}/{object_key}?{sas_token}"
 
     async def upload_file(
         self,
